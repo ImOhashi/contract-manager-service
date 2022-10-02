@@ -1,0 +1,42 @@
+### CONFIGURATION SERVER ###
+server:
+  port: 8080
+
+### CONFIGURATION DATABASE ###
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+      physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQL81Dialect
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: admin
+  output:
+    ansi:
+      enabled: ALWAYS
+
+### CONFIGURATION LOG ###
+logging:
+  level:
+    root: INFO
+    com:
+      example: TRACE
+
+### ACTUATOR ###
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
